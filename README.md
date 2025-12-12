@@ -1,3 +1,6 @@
+
+<img width="419" height="419" alt="Generated Image December 11, 2025 - 5_06PM (1)" src="https://github.com/user-attachments/assets/5e9c1382-1918-45a4-8abc-4194bc40f897" />
+
 # One Hour at a Time - Personal Time Management App
 
 A React Native mobile application for managing your hourly schedule with activity groups and local notifications.
