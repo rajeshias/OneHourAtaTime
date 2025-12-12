@@ -5,7 +5,9 @@
   "scripts": {
     "start": "react-native start --port=8083",
     "android": "react-native run-android --port=8083",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "build:apk": "./build-release.sh",
+    "build:bundle": "./build-bundle.sh"
   },
   "dependencies": {
     "@notifee/react-native": "^9.1.8",
