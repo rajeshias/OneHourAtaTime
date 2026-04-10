@@ -11,6 +11,7 @@ interface DailyColumnProps {
   hours: HourBlock[];
   onUpdateHour: (hour: number, content: string) => void;
   selectedHours: number[];
+  selectionMode: boolean;
   onHourLongPress: (hour: number) => void;
   onHourPress: (hour: number) => void;
   width: number;
@@ -25,6 +26,7 @@ export const DailyColumn: React.FC<DailyColumnProps> = ({
   hours,
   onUpdateHour,
   selectedHours,
+  selectionMode,
   onHourLongPress,
   onHourPress,
   width,
@@ -129,6 +131,7 @@ export const DailyColumn: React.FC<DailyColumnProps> = ({
               content={hourBlock.content}
               onUpdate={(content) => onUpdateHour(hourBlock.hour, content)}
               isSelected={selectedHours.includes(hourBlock.hour)}
+              selectionMode={selectionMode}
               onLongPress={() => onHourLongPress(hourBlock.hour)}
               onPress={() => onHourPress(hourBlock.hour)}
               onFocus={() => {

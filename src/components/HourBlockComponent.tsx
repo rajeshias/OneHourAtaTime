@@ -6,6 +6,7 @@ interface HourBlockProps {
   content: string;
   onUpdate: (content: string) => void;
   isSelected: boolean;
+  selectionMode: boolean;
   onLongPress: () => void;
   onPress: () => void;
   onFocus?: () => void;
@@ -18,6 +19,7 @@ export const HourBlockComponent: React.FC<HourBlockProps> = ({
   content,
   onUpdate,
   isSelected,
+  selectionMode,
   onLongPress,
   onPress,
   onFocus,
@@ -68,7 +70,9 @@ export const HourBlockComponent: React.FC<HourBlockProps> = ({
   };
 
   const handlePress = () => {
-    setIsEditing(true);
+    if (!selectionMode) {
+      setIsEditing(true);
+    }
     onPress();
   };
 

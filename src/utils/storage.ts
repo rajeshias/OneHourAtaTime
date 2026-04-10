@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityGroup, WeekData, Habit } from '../types';
+import { ActivityGroup, WeekData, Habit, ReminderSettings } from '../types';
 
 const ACTIVITY_GROUPS_KEY = '@activity_groups';
 const WEEK_DATA_KEY = '@week_data_';
@@ -7,6 +7,7 @@ const SLEEPING_HOURS_KEY = '@sleeping_hours';
 const HABITS_KEY = '@habits';
 const HABIT_FILLED_WEEKS_KEY = '@habit_filled_weeks';
 const ONBOARDING_COMPLETED_KEY = '@onboarding_completed';
+const REMINDER_SETTINGS_KEY = '@reminder_settings';
 
 export const storageUtils = {
   // Activity Groups
@@ -132,6 +133,25 @@ export const storageUtils = {
       await AsyncStorage.setItem(ONBOARDING_COMPLETED_KEY, completed ? 'true' : 'false');
     } catch (error) {
       console.error('Error setting onboarding status:', error);
+    }
+  },
+
+  // Reminder Settings
+  async getReminderSettings(): Promise<ReminderSettings> {
+    try {
+      const data = await AsyncStorage.getItem(REMINDER_SETTINGS_KEY);
+      return data ? JSON.parse(data) : { enabled: false, morningHour: 8, eveningEnabled: false, eveningHour: 21 };
+    } catch (error) {
+      console.error('Error getting reminder settings:', error);
+      return { enabled: false, morningHour: 8, eveningEnabled: false, eveningHour: 21 };
+    }
+  },
+
+  async saveReminderSettings(settings: ReminderSettings): Promise<void> {
+    try {
+      await AsyncStorage.setItem(REMINDER_SETTINGS_KEY, JSON.stringify(settings));
+    } catch (error) {
+      console.error('Error saving reminder settings:', error);
     }
   },
 };

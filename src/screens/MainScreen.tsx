@@ -392,6 +392,7 @@ export const MainScreen: React.FC = () => {
               selectedHours={
                 selectedBlocks?.dayKey === day ? selectedBlocks.hours : []
               }
+              selectionMode={selectionMode}
               onHourLongPress={(hour) => handleHourLongPress(day, hour)}
               onHourPress={(hour) => handleHourPress(day, hour)}
               width={getColumnWidth(day)}
@@ -414,6 +415,7 @@ export const MainScreen: React.FC = () => {
               selectedHours={
                 selectedBlocks?.dayKey === day ? selectedBlocks.hours : []
               }
+              selectionMode={selectionMode}
               onHourLongPress={(hour) => handleHourLongPress(day, hour)}
               onHourPress={(hour) => handleHourPress(day, hour)}
               width={getColumnWidth(day)}

@@ -42,3 +42,10 @@ export interface Habit {
   endHour: number;    // 0-23 (exclusive)
   enabled: boolean;
 }
+
+export interface ReminderSettings {
+  enabled: boolean;
+  morningHour: number;   // 0-23, default 8
+  eveningEnabled: boolean;
+  eveningHour: number;   // 0-23, default 21
+}

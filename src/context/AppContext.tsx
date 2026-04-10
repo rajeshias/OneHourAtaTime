@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { ActivityGroup, WeekData, DayData, HourBlock, TodoItem, Habit } from '../types';
 import { storageUtils } from '../utils/storage';
 import { getWeekKey, getMonday, formatDate } from '../utils/dateUtils';
+import { notificationUtils } from '../utils/notifications';
 
 interface AppContextType {
   activityGroups: ActivityGroup[];
@@ -84,6 +85,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const loadedHabits = await storageUtils.getHabits();
     setHabitsState(loadedHabits);
     await loadWeekData(0);
+
+    // Re-schedule daily reminders on app launch
+    const reminderSettings = await storageUtils.getReminderSettings();
+    if (reminderSettings.enabled) {
+      notificationUtils.scheduleDailyReminders(reminderSettings);
+    }
   };
 
   const loadWeekData = async (offset: number) => {
